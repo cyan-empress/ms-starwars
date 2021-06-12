@@ -79,7 +79,7 @@ jobs:
       - name: Login to JFrog
         uses: docker/login-action@v1
         with:
-          registry: <nazwa organizacji>.jfrog.io
+          registry: mswisit15151.jfrog.io
           username: ${{ secrets.JFROG_USERNAME }}
           password: ${{ secrets.JFROG_PASSWORD }}
           
@@ -88,4 +88,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: <nazwa organizacji>.jfrog.io/default-docker-local/test:latest
+          tags: mswisit15151.jfrog.io/default-docker-local/test:latest
