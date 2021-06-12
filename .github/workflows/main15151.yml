@@ -69,3 +69,23 @@ jobs:
             -Dsonar.organization=cyan-empress
             -Dsonar.projectKey=cyan-empress_ms-starwars
           projectBaseDir: ./
+          
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        
+      - name: Login to JFrog
+        uses: docker/login-action@v1
+        with:
+          registry: <nazwa organizacji>.jfrog.io
+          username: ${{ secrets.JFROG_USERNAME }}
+          password: ${{ secrets.JFROG_PASSWORD }}
+          
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: <nazwa organizacji>.jfrog.io/default-docker-local/test:latest
