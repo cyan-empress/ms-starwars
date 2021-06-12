@@ -58,3 +58,14 @@ jobs:
         with:
           name: Depcheck report
           path: ${{github.workspace}}/reports
+          
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v1.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.personal }}
+          SONAR_TOKEN: ${{ secrets.s15151 }}
+        with:
+          args: >
+            -Dsonar.organization=cyan-empress
+            -Dsonar.projectKey=cyan-empress_ms-starwars
+          projectBaseDir: ./
